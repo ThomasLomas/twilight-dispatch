@@ -40,8 +40,8 @@ async fn main() {
 
 async fn real_main() -> ApiResult<()> {
     let redis = redis::Client::open(format!(
-        "redis://{}:{}/",
-        CONFIG.redis_host, CONFIG.redis_port
+        "redis://{}:{}@{}:{}/",
+        CONFIG.redis_user, CONFIG.redis_pass, CONFIG.redis_host, CONFIG.redis_port
     ))?;
 
     let mut conn = redis.get_async_connection().await?;
